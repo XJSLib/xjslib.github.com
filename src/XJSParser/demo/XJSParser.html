@@ -1,0 +1,192 @@
+<input type="text" value="1+|-13+1|*cos(0)^-3" /><button>Parse</button>
+
+<script src="../../XJSLib.js"></script>
+
+<script src="../../XJSIterator/src/XJSIterator.js"></script>
+<script src="../../XJSIterator/src/XJSStringIterator.js"></script>
+
+<script src="../src/Rule.js"></script>
+
+<script src="../src/Rule/Operator.js"></script>
+<script src="../src/Rule/Operator/And.js"></script>
+<script src="../src/Rule/Operator/Or.js"></script>
+<script src="../src/Rule/Operator/Repeat.js"></script>
+<script src="../src/Rule/Operator/Or.js"></script>
+
+<script src="../src/Rule/Production.js"></script>
+
+<script src="../src/Rule/ProductionReference.js"></script>
+
+<script src="../src/Rule/ProductionSet.js"></script>
+
+<script src="../src/Rule/Terminal.js"></script>
+
+<script src="../src/TMP.js"></script>
+
+<script>
+var productionSet = new ProductionSet( function ( operators, options ) {
+    'use strict';
+    var And = operators.And;
+    var Or = operators.Or;
+    var Repeat = operators.Repeat;
+    var Rule = operators.Production;
+    var Optionnal = operators.Optionnal;
+    var s = Rule( 'OptionnalSpaces' );
+    return [
+        {
+            name: 'Digit',
+            rules: Or( [
+                '0',
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9'
+            ] )
+        },
+        {
+            name: 'Number',
+            rules: Repeat( And( [
+                s,
+                Rule( 'Digit' ),
+                s
+            ] ), '+' ),
+            join: true
+        },
+        {
+            name: 'Expression',
+            start: true,
+            rules: And( [
+                s,
+                Rule( 'AdditiveExpression' ),
+                s
+            ] )
+        },
+        {
+            name: 'AdditiveExpression',
+            rules: Or( [
+                And( [
+                    Rule( /left/, 'MultiplicativeExpression' ),
+                    Or( /operator/, [
+                        '+',
+                        '-'
+                    ] ),
+                    Rule( /right/, 'AdditiveExpression' )
+                ] ),
+                Rule( 'MultiplicativeExpression' )
+            ] )
+        },
+        {
+            name: 'MultiplicativeExpression',
+            rules: Or( [
+                And( [
+                    s,
+                    Rule( /left/, 'ExponentialExpression' ),
+                    s,
+                    Or( /operator/, [
+                        '*',
+                        '/'
+                    ] ),
+                    Rule( /right/, 'MultiplicativeExpression' ),
+                    s
+                ] ),
+                Rule( 'ExponentialExpression' )
+            ] )
+        },
+        {
+            name: 'ExponentialExpression',
+            rules: Or( [
+                And( [
+                    s,
+                    Rule( /left/, 'UnaryExpression' ),
+                    s,
+                    '^',
+                    s,
+                    Rule( /right/, 'ExponentialExpression' ),
+                    s
+                ] ),
+                Rule( 'UnaryExpression' )
+            ] )
+        },
+        {
+            name: 'UnaryExpression',
+            rules: Or( [
+                And( [
+                    s,
+                    Or( [
+                        '+',
+                        '-'
+                    ] ),
+                    s,
+                    Rule( 'UnaryExpression' ),
+                    s
+                ] ),
+                Rule( 'PrimaryExpression' )
+            ] )
+        },
+        {
+            name: 'PrimaryExpression',
+            rules: Or( [
+                Rule( 'FunctionCall' ),
+                And( [
+                    s,
+                    '(',
+                    Rule( 'Expression' ),
+                    ')',
+                    s,
+                ] ),
+                Rule( 'Number' )
+            ] )
+        },
+        {
+            name: 'FunctionName',
+            rules: Repeat( Or( 'abcdefghijklmnopqrstuvwxyz'.split( '' ) ), '+' ),
+            join: true
+        },
+        {
+            name: 'FunctionCall',
+            rules: Or( [
+                And( [
+                    s,
+                    Rule( /name/, 'FunctionName' ),
+                    s,
+                    '(',
+                    s,
+                    Rule( /expression/, 'Expression' ),
+                    s,
+                    ')',
+                    s
+                ] ),
+                And( [
+                    '|',
+                    Rule( /expression/, 'Expression' ),
+                    '|'
+                ] )
+            ] )
+        },
+        {
+            name: 'OptionnalSpaces',
+            rules: Repeat( Or( [
+                ' ',
+                '\r',
+                '\n'
+            ] ), '*' ),
+            join: true
+        }
+    ];
+} );
+console.log( productionSet );
+var input = document.getElementsByTagName( 'input' )[ 0 ];
+input.onchange = function ( ) {
+    var result = productionSet.exec( new XJSStringIterator( this.value ), {
+        join: true,
+        removeEmpty: true
+    } );
+    console.log( result );
+};
+input.onchange( );
+</script>

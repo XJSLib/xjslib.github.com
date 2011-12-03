@@ -1,0 +1,22 @@
+[
+    {
+        "path": "script.js",
+        "dependencies": [
+            "a.js",
+            "b.js"
+        ],
+        "build": function ( files ) {
+            return files[ 'a.js' ] + files[ 'b.js' ];
+        }
+    },
+    {
+        "path": "b.js",
+        "dependencies": [
+            "1.js",
+            "2.js"
+        ],
+        "build": function ( files ) {
+            return files[ '1.js' ] + files[ '2.js' ];
+        }
+    }
+]
