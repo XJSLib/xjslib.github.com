@@ -1,1 +1,1 @@
-Sample at [http://xjslib.github.com/src/XJSParser/demo/XJSParser.html]
+Sample at http://xjslib.github.com/src/XJSParser/demo/XJSParser.html
