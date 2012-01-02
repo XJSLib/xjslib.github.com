@@ -39,6 +39,7 @@ Object.defineProperties( Production.prototype, {
     },
     start: {
         value: false,
-        enumerable: true
+        enumerable: true,
+        writable: true
     }
 } );

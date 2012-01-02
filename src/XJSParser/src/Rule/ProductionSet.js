@@ -21,7 +21,7 @@ function ProductionSet( callback ) {
         if ( byName.hasOwnProperty( name ) ) {
             throw new Error( );
         }
-        byName[ name ] = production;
+        byName[ name ] = production;console.log(production)
         if ( production.start === true ) {
             if ( start !== undefined ) {
                 throw new Error( );
