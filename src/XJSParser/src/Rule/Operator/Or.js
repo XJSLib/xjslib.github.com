@@ -14,7 +14,7 @@ Object.defineProperties( Or.prototype, {
                 result = operand.exec( iterator, options );
                 return result !== null;
             } );
-            return some ? this.format( result, options ) : null;
+            return some ? result : null;
         }
     }
 } );

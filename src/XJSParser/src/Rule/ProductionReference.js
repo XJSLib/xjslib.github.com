@@ -45,7 +45,7 @@ ProductionReference.inherits( Rule );
 Object.defineProperties( ProductionReference.prototype, {
     exec: {
         value: function ( iterator, options ) {
-            return this.format( this.production.exec( iterator, options ), options );
+            return this.production.exec( iterator, options );
         }
     }
 } );

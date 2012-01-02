@@ -41,7 +41,7 @@ Object.defineProperties( ProductionSet.prototype, {
     exec: {
         value: function ( iterator, options ) {
             var result = this.start.exec( iterator, options );
-            return iterator.done ? this.format( result, options ) : null;
+            return iterator.done ? result : null;
         }
     }
 } );

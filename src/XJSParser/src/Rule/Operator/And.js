@@ -16,13 +16,13 @@ Object.defineProperties( And.prototype, {
                 if ( result === null ) {
                     return false;
                 } else {
-                    results.push( result );
+                    results = results.concat( result );
                     return true;
                 }
             } );
             if ( every ) {
                 iterator.index = cloneOfIterator.index;
-                return this.format( results, options );
+                return results;
             } else {
                 return null;
             }

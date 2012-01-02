@@ -33,7 +33,8 @@ Production.inherits( Rule );
 Object.defineProperties( Production.prototype, {
     exec: {
         value: function ( iterator, options ) {
-            return this.format( this.rules.exec( iterator, options ), options );
+            var result = this.rules.exec( iterator, options );
+            return result === null ? null : new XJSToken( this.name ).appendChildren( result );
         }
     },
     start: {

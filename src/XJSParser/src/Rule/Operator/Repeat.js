@@ -163,14 +163,14 @@ Object.defineProperties( Repeat.prototype, {
                 if ( result === null ) {
                     break;
                 } else {
-                    results.push( result );
+                    results = results.concat( result );
                 }
             }
             if ( results.length < this.min ) {
                 return null;
             } else {
                 iterator.index = cloneOfIterator.index;
-                return this.format( results, options );
+                return results;
             }
         }
     }

@@ -41,3 +41,7 @@ function newWithArguments( Constructor, args ) {
 function join( array ) {
     return Array.isArray( array ) ? array.map( join ).join( '' ) : array;
 }
+
+Array.prototype.contains = function ( item ) {
+    return this.indexOf( item ) !== -1;
+};

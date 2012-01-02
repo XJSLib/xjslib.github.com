@@ -49,21 +49,6 @@ Object.defineProperties( Rule.prototype, {
             }, this );
         }
     },
-    format: {
-        value: function ( result, options ) {
-            if ( result === null ) {
-                return null;
-            } else {
-                optionsByIndex.forEach( function ( option ) {
-                    var name = option.name;
-                    if ( options[ name ] && ( this[ name ] || option.global ) ) {
-                        result = option.format( result );
-                    }
-                }, this );
-                return result;
-            }
-        }
-    },
     join: {
         value: false,
         enumerable: true

@@ -23,7 +23,7 @@ Object.defineProperties( Terminal.prototype, {
             var length = string.length;
             if ( iterator.string.substr( iterator.index, length ) === string ) {
                 iterator.index += length;
-                return this.format( string, options );
+                return [ new XJSToken( string ) ];
             } else {
                 return null;
             }
