@@ -6,9 +6,12 @@ Object.getOwnPropertyDescriptors = function ( object ) {
     return propertiesDescriptor;
 };
 
+function inherits( Child, Parent ) {
+    Child.prototype = Object.create( Parent.prototype, Object.getOwnPropertyDescriptors( Child.prototype ) );
+    return Child;
+}
 Function.prototype.inherits = function ( Parent ) {
-    this.prototype = Object.create( Parent.prototype, Object.getOwnPropertyDescriptors( this.prototype ) );
-    return this;
+    return inherits( this, Parent );
 };
 
 Object.prototype.clone = function ( ) {
@@ -33,6 +36,17 @@ var getTypeOf = ( function ( ) {
     }
     return getTypeOf;
 }( ) );
+
+
+function extend( that, object ) {
+    Object.keys( object ).forEach( function ( key ) {
+        that[ key ] = object[ key ];
+    } );
+    return that;
+}
+Object.prototype.extend = function ( object ) {
+    return extend( this, object );
+};
 
 function newWithArguments( Constructor, args ) {
     return Constructor.apply( Object.create( Constructor.prototype ), args );
