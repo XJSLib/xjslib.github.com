@@ -20,5 +20,16 @@ var m = new XJSMatrix( [
 ] ).map( function ( element ) {
     return new XJSInteger( element );
 } );
-console.log( m.reduce( ).toString( ) );
+
+console.log( i2.toString( ), '+', i3.toString( ), '=', i2[ '+' ]( i3 ).toString( ) );
+console.log( i2.toString( ), 'x', i3.toString( ), '=', i2[ 'x' ]( i3 ).toString( ) );
+
+console.log( '' );
+console.log( f12.toString( ), '+', f23.toString( ), '=', f12[ '+' ]( f23 ).toString( ) );
+console.log( f12.toString( ), 'x', f23.toString( ), '=', f12[ 'x' ]( f23 ).toString( ) );
+
+console.log( '' );
+console.log( i3.toString( ), '\r\nx', '\r\n' + m.toString( ), '\r\n=', '\r\n' + i3.x( m ).toString( ) );
+console.log( '' );
+console.log( f23.toString( ), '\r\nx', '\r\n' + m.toString( ), '\r\n=', '\r\n' + f23.x( m ).toString( ) );
 </script>
