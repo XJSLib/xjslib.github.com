@@ -1,3 +1,6 @@
 [submodule "src/XJSIterator"]
 	path = src/XJSIterator
 	url = git@github.com:XJSLib/XJSIterator.git
+[submodule "src/XJSMathematics"]
+	path = src/XJSMathematics
+	url = git@github.com:XJSLib/XJSMathematics.git
