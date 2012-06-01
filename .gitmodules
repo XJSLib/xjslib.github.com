@@ -4,3 +4,6 @@
 [submodule "src/XJSMathematics"]
 	path = src/XJSMathematics
 	url = git@github.com:XJSLib/XJSMathematics.git
+[submodule "src/XJSTree"]
+	path = src/XJSTree
+	url = git@github.com:XJSLib/XJSTree.git
