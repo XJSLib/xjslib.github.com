@@ -7,3 +7,6 @@
 [submodule "src/XJSTree"]
 	path = src/XJSTree
 	url = git@github.com:XJSLib/XJSTree.git
+[submodule "src/XJSParser"]
+	path = src/XJSParser
+	url = git@github.com:XJSLib/XJSParser.git
