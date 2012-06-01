@@ -1,0 +1,3 @@
+[submodule "src/XJSIterator"]
+	path = src/XJSIterator
+	url = git://github.com/XJSLib/XJSIterator.git
