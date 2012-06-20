@@ -18,13 +18,9 @@ Object.prototype.clone = function ( ) {
     return Object.create( Object.getPrototypeOf( this ), Object.getOwnPropertyDescriptors( this ) );
 };
 
-Array.toArray = ( function ( ) {
-    var slice = [ ].slice;
-    function toArray( object ) {
-        return slice.call( object );
-    }
-    return toArray;
-}( ) );
+Array.toArray = function toArray( object ) {
+    return [ ].slice.call( object );
+};
 
 var getTypeOf = ( function ( ) {
     var toString = { }.toString;
